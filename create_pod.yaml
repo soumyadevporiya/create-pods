@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: create_pod
+  name: create-pod
 spec:
   replicas: 1
   selector:
@@ -14,4 +14,4 @@ spec:
       spec:
         containers:
         - name: create-pod
-          image: gcr.io/level-approach-382012/create_pod:latest
+          image: gcr.io/level-approach-382012/create-pod:latest
