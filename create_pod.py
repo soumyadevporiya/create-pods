@@ -24,7 +24,7 @@ pod_name = 'my-bq-read-pod-{}'.format(11)
 
 image = 'gcr.io/level-approach-382012/bq_storage_reader_client:latest'
 env = V1EnvVar(name='PARTITION_FIELD', value='11')
-container = V1Container(name=container_name, image=image, env=env)
+container = V1Container(name=container_name, image=image, env=[env])
 podspec = V1PodSpec(containers=[container], restart_policy="Always")
 metadata = V1ObjectMeta(name=pod_name, namespace=namespace)
 pod = V1Pod(api_version='v1', kind='Pod', metadata=metadata, spec=podspec)
