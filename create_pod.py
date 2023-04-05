@@ -18,36 +18,37 @@ from kubernetes.client import V1EnvVar
 config.load_incluster_config()
 v1 = kubernetes.client.CoreV1Api()
 
-container_name = 'container-with-envs'
-namespace = 'default'
-pod_name = 'my-bq-read-pod-{}'.format(11)
+for i in range(10,20):
+    container_name = 'container-with-envs-{}'.format(i)
+    namespace = 'default'
+    pod_name = 'my-bq-read-pod-{}'.format(i)
 
-image = 'gcr.io/level-approach-382012/bq_storage_reader_client:latest'
-env = V1EnvVar(name='PARTITION_FIELD', value='11')
-container = V1Container(name=container_name, image=image, env=[env])
-podspec = V1PodSpec(containers=[container], restart_policy="Always")
-metadata = V1ObjectMeta(name=pod_name, namespace=namespace)
-pod = V1Pod(api_version='v1', kind='Pod', metadata=metadata, spec=podspec)
+    image = 'gcr.io/level-approach-382012/bq_storage_reader_client:latest'
+    env = V1EnvVar(name='PARTITION_FIELD', value=str(i))
+    container = V1Container(name=container_name, image=image, env=[env])
+    podspec = V1PodSpec(containers=[container], restart_policy="Always")
+    metadata = V1ObjectMeta(name=pod_name, namespace=namespace)
+    pod = V1Pod(api_version='v1', kind='Pod', metadata=metadata, spec=podspec)
 
-my_pod = v1.create_namespaced_pod(namespace, pod)
+    my_pod = v1.create_namespaced_pod(namespace, pod)
 
-while True:
-    resp = v1.read_namespaced_pod(name=pod_name, namespace='default')
-    if resp.status.phase != 'Pending':
-        break
-    time.sleep(1)
+    while True:
+        resp = v1.read_namespaced_pod(name=pod_name, namespace='default')
+        if resp.status.phase != 'Pending':
+            break
+        time.sleep(1)
 
-# ret = v1.read_namespaced_pod(pod_name, namespace)
+    # ret = v1.read_namespaced_pod(pod_name, namespace)
 
-# if ret:
-# details = "POD Created"
+    # if ret:
+    # details = "POD Created"
 
-# print(jsonify({"message": "POD Details ", "Information: ": details}))
+    # print(jsonify({"message": "POD Details ", "Information: ": details}))
 
-while True:
-    resp = v1.read_namespaced_pod(name=pod_name, namespace='default')
-    if resp.status.phase == 'Succeeded':
-        break
+    while True:
+        resp = v1.read_namespaced_pod(name=pod_name, namespace='default')
+        if resp.status.phase == 'Succeeded':
+            break
 
-# delete_response = v1.delete_namespaced_pod(name=pod_name, namespace=namespace)
-print("Pod is created")
+    # delete_response = v1.delete_namespaced_pod(name=pod_name, namespace=namespace)
+    print("Pod is created")
