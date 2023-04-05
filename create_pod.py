@@ -18,7 +18,7 @@ from kubernetes.client import V1EnvVar
 config.load_incluster_config()
 v1 = kubernetes.client.CoreV1Api()
 
-for i in range(10,20):
+for i in range(20,60):
     container_name = 'container-with-envs-{}'.format(i)
     namespace = 'default'
     pod_name = 'my-bq-read-pod-{}'.format(i)
@@ -36,7 +36,7 @@ for i in range(10,20):
         resp = v1.read_namespaced_pod(name=pod_name, namespace='default')
         if resp.status.phase != 'Pending':
             break
-        time.sleep(1)
+        time.sleep(0.01)
 
     # ret = v1.read_namespaced_pod(pod_name, namespace)
 
