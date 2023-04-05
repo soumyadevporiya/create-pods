@@ -1,18 +1,9 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
   name: create-pod
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: create-pod
-  template:
-      metadata:
-        labels:
-          app: create-pod
-      spec:
-        containers:
-        - name: create-pod
-          image: gcr.io/level-approach-382012/create-pod:latest
-        restartPolicy: Never
+  restartPolicy: Never
+  containers:
+  - name: create-pod
+    image: gcr.io/level-approach-382012/create-pod:latest

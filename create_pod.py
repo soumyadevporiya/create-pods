@@ -47,7 +47,7 @@ for i in range(10,20):
 
     while True:
         resp = v1.read_namespaced_pod(name=pod_name, namespace='default')
-        if resp.status.phase == 'Succeeded':
+        if resp.status.phase == 'Running':
             break
 
     # delete_response = v1.delete_namespaced_pod(name=pod_name, namespace=namespace)
