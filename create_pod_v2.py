@@ -18,7 +18,7 @@ from kubernetes.client import V1EnvVar
 config.load_incluster_config()
 v1 = kubernetes.client.CoreV1Api()
 
-for i in range(0, 10):
+for i in range(0, 20):
     container_name = 'container-with-envs-{}'.format(i)
     namespace = 'default'
     pod_name = 'my-bq-read-pod-{}'.format(i)
@@ -28,9 +28,9 @@ for i in range(0, 10):
     container = V1Container(name=container_name, image=image, env=[env])
 
     node_name = ''
-    if i<=2:
+    if i<=5:
         node_name = 'gke-cluster-1-default-pool-85d6db8c-5b0n'
-    elif i<=6:
+    elif i<=12:
         node_name = 'gke-cluster-1-default-pool-85d6db8c-k9f2'
     else:
         node_name = 'gke-cluster-1-default-pool-85d6db8c-xhsk'
