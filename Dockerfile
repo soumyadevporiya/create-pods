@@ -2,5 +2,5 @@ FROM python:3.9
 WORKDIR ./
 COPY ./requirement.txt ./requirement.txt
 RUN pip install -r requirement.txt
-COPY ./create_pod_v2.py ./create_pod_v2.py
-CMD ["python3","./create_pod_v2.py"]
+COPY ./create_pod_v3.py ./create_pod_v3.py
+CMD ["python3","./create_pod_v3.py"]
