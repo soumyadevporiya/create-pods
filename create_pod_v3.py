@@ -56,7 +56,7 @@ for i in range(0, 10):
 
 # Now Create the POD for new customer check
 
-container_name = 'container-with-envs-{}'.format(i)
+container_name = 'container-with-envs-{}'.format(10)
 namespace = 'default'
 pod_name = 'my-bq-read-pod-{}'.format(i)
 node_name = 'gke-cluster-1-default-pool-85d6db8c-xhsk'
