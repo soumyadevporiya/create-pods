@@ -58,7 +58,7 @@ for i in range(0, 10):
 
 container_name = 'container-with-envs-{}'.format(10)
 namespace = 'default'
-pod_name = 'my-bq-read-pod-{}'.format(i)
+pod_name = 'my-bq-read-pod-{}'.format(10)
 node_name = 'gke-cluster-1-default-pool-85d6db8c-xhsk'
 image = 'gcr.io/level-approach-382012/ns_monolith_parallel_reader_v2:latest'
 env1 = V1EnvVar(name='ITER', value='')
