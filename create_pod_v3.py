@@ -18,12 +18,12 @@ from kubernetes.client import V1EnvVar
 config.load_incluster_config()
 v1 = kubernetes.client.CoreV1Api()
 
-for i in range(0, 1):
+for i in range(0, 10):
     container_name = 'container-with-envs-{}'.format(i)
     namespace = 'default'
     pod_name = 'my-bq-read-pod-{}'.format(i)
 
-    image = 'gcr.io/level-approach-382012/ns_monolith_parallel_reader_v2:latest'
+    image = 'gcr.io/level-approach-382012/ns_monolith_parallel_reader_v3:latest'
     env1 = V1EnvVar(name='ITER', value=str(i))
     env2 = V1EnvVar(name='POD_TYPE', value='1st')
     env3 = V1EnvVar(name='PCT', value='19')
