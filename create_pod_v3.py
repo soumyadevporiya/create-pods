@@ -23,10 +23,10 @@ for i in range(0, 10):
     namespace = 'default'
     pod_name = 'my-bq-read-pod-{}'.format(i)
 
-    image = 'gcr.io/level-approach-382012/ns_monolith_parallel_reader_v3:latest'
+    image = 'gcr.io/level-approach-382012/ns_monolith_parallel_reader_v2:latest'
     env1 = V1EnvVar(name='ITER', value=str(i))
     env2 = V1EnvVar(name='POD_TYPE', value='1st')
-    env3 = V1EnvVar(name='PCT', value='49')
+    env3 = V1EnvVar(name='PCT', value='0')
     container = V1Container(name=container_name, image=image, env=[env1, env2, env3])
 
     node_name = ''
