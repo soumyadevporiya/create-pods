@@ -30,9 +30,9 @@ for i in range(0, 5):
     container = V1Container(name=container_name, image=image, env=[env1, env2, env3])
 
     node_name = ''
-    if i <= 2:
+    if i <= 1:
         node_name = 'gke-cluster-1-default-pool-85d6db8c-5b0n'
-    elif i <= 6:
+    elif i <= 3:
         node_name = 'gke-cluster-1-default-pool-85d6db8c-k9f2'
     else:
         node_name = 'gke-cluster-1-default-pool-85d6db8c-xhsk'
